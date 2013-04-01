@@ -9,6 +9,10 @@ Installation
 
 #. Add the ``redactor`` directory to your Python path.
 #. Add the ``redactor`` application to your `INSTALLED_APPS <https://docs.djangoproject.com/en/1.4/ref/settings/#installed-apps>`_ setting.
+#. Update urls.py:
+```
+    url('^redactor/', include('redactor.urls')),
+```
 
 Usage
 ----------------
@@ -38,7 +42,7 @@ Django-redactor also includes a widget with some some customizations that make i
 
     class MyAdmin(admin.ModelAdmin):
         formfield_overrides = {
-                models.TextField: {'widget': AdminRedactorEditor},
+            models.TextField: {'widget': AdminRedactorEditor},
         }
 
 Finally, you can connect a custom CSS file to the editable area of the editor::
