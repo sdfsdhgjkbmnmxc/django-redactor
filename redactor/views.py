@@ -1,12 +1,16 @@
 import json
+from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from models import File
 
 
 @require_POST
+@csrf_exempt
+@login_required  # TODO: make better
 def upload_photos(request):
     images = [{
         "filelink": File.objects.create(upload=f, is_image=True).upload.url,
